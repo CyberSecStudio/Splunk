@@ -1,15 +1,4 @@
 #
-# Section #1. The following section contains the configurations of the index time
-#          log source renaming functions. This configuration is optional and it is
-#          meant to be deployed on the Splunk heavy forwarders, indexer nodes, or 
-#		   all-in-one standalone instances.    
-#
-[rename_cef_source]
-DEST_KEY = MetaData:Source
-REGEX = CEF\:+[0-9]{1,}+\|
-FORMAT = source::ArcSight://CEF_Data_Stream
-
-#
 # Section #2. The following section contains all the mandatory configurations for 
 #          the search time field extractions which are used on the Splunk search 
 #		   heads and all-in-one standalone instances. They are not required by the 
@@ -23,12 +12,12 @@ FORMAT = source::ArcSight://CEF_Data_Stream
 #
 
 #
-# The following stanza is used to cover the majority known CEF heads, including the
+# The following stanza is used to cover the majority known CEF heads, excluding the
 #          Microsoft SQL Action Audit group logs in Windows Event Logs and processed
 #          by the Windows connectors or flex connectors.
 #
 [cef_header_fields]
-REGEX = CEF\:+(?<version>[0-9]{1,})[\|](?<dvc_vendor>[^\|]{0,})[\|](?<dvc_product>[^\|]{0,})[\|](?<dvc_version>[^\|]{0,})[\|](?<deviceEventClassId>(([^(\\\|)]{1,}[\\]{1}[\|]{1}){1,}[^\|]{1,}|[^\|]{0,}))[\|](?<name>(([^(\\\|)]{1,}[\\]{1}[\|]{1}){1,}[^\|]{1,}|[^\|]{0,}))[\|](?<severity>[^\|]{1,}|)[\|]+.*
+REGEX = CEF\:+(?<version>[0-9]{1,})[\|](?<dvc_vendor>[^\|]{0,})[\|](?<dvc_product>[^\|]{0,})[\|](?<dvc_version>[^\|]{0,})[\|](?<deviceEventClassId>(([^(\\\|)]{1,}[\\]{1}[\|]{1}){1,}[^\|]{1,}|[^\|]{0,}))[\|](?<name>([^\|]{0,}))[\|](?<severity>[^\|]{1,}|)[\|]+.*
 
 #
 # The following sections are the configurations which are used to extract the standard

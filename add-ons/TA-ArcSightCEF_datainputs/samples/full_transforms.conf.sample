@@ -31,6 +31,14 @@ FORMAT = source::ArcSight://CEF_Data_Stream
 REGEX = CEF\:+(?<version>[0-9]{1,})[\|](?<dvc_vendor>[^\|]{0,})[\|](?<dvc_product>[^\|]{0,})[\|](?<dvc_version>[^\|]{0,})[\|](?<deviceEventClassId>(([^(\\\|)]{1,}[\\]{1}[\|]{1}){1,}[^\|]{1,}|[^\|]{0,}))[\|](?<name>(([^(\\\|)]{1,}[\\]{1}[\|]{1}){1,}[^\|]{1,}|[^\|]{0,}))[\|](?<severity>[^\|]{1,}|)[\|]+.*
 
 #
+# If you are confident that you do not have any event log from Microsoft SQL Action 
+#          Audit groups in CEF format, you can disable the stanza above and enable the
+#          stanza below instead.
+#
+# [cef_header_fields]
+# REGEX = CEF\:+(?<version>[0-9]{1,})[\|](?<dvc_vendor>[^\|]{0,})[\|](?<dvc_product>[^\|]{0,})[\|](?<dvc_version>[^\|]{0,})[\|](?<deviceEventClassId>(([^(\\\|)]{1,}[\\]{1}[\|]{1}){1,}[^\|]{1,}|[^\|]{0,}))[\|](?<name>([^\|]{0,}))[\|](?<severity>[^\|]{1,}|)[\|]+.*
+
+#
 # The following sections are the configurations which are used to extract the standard
 #          CEF fields from the event logs.
 #
