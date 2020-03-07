@@ -4,6 +4,19 @@
 #     the Splunk indexer nodes, or all-in-one standalone Splunk instances. They are not
 #     required for the Splunk search heads.
 #
+
+#
+# Rule based sourcetype recognization. Require Splunk version 7.x or above
+#
+[rule::cef_data_stream]
+sourcetype = cef_data_stream
+MORE_THAN_1 = CEF\:+[0-9]{1,}+\|+.*
+disabled = false
+SHOULD_LINEMERGE = false
+
+#
+# sourcetype based field extractions
+#
 [cef_data_stream]
 
 # Default configurations fo the Splunk log sourcetypes
@@ -13,6 +26,10 @@ disabled = false
 
 # Disable the line merges and break the events on per line basis
 SHOULD_LINEMERGE = false
+
+# Disabe the auto key-value field extractions which could not extract fields consistent and granularly.
+KV_MODE = none
+AUTO_KV_JSON = false
 
 # To use the following, the stanza [rename_cef_source] in transforms.conf must be enabled
 TRANSFORMS-logProcess = rename_cef_source
@@ -25,5 +42,7 @@ TRANSFORMS-logProcess = rename_cef_source
 # Disable automatically field extractions, key-value pairing and line merges
 KV_MODE = none
 AUTO_KV_JSON = false
+
+# Disable the line merges and break the events on per line basis
 SHOULD_LINEMERGE = false
 

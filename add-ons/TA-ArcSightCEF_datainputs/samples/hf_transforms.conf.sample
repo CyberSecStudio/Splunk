@@ -8,5 +8,3 @@
 DEST_KEY = MetaData:Source
 REGEX = CEF\:+[0-9]{1,}+\|
 FORMAT = source::ArcSight://CEF_Data_Stream
-
-
